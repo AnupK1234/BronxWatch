@@ -1,0 +1,11 @@
+import React from 'react'
+
+const Community_Forum = () => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+export default Community_Forum
