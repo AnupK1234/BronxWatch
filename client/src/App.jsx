@@ -10,7 +10,8 @@ import Home from "./pages/Home.jsx";
 import Register_Complaints from "./pages/Register_Complaints";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
-
+import SignIn from "./pages/SignIn.jsx";
+import ListOfComplaints from './pages/ListOfComplaints.jsx'
 const App = () => {
   return (
     <main className="bg-slate-300/20">
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/user/dashboard" element={<Dashboard />} />
+          <Route path = "/list_of_complaints" element = {<ListOfComplaints />} />
         </Routes>
       </Router>
     </main>
