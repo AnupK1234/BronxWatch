@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
+import { Complaint } from "../models/complaint.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -223,6 +224,47 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "User fetched successfully"));
 });
 
+// register complaint
+const registerComplaint = asyncHandler(async (req, res) => {
+  const { locality, date, issueType, issueDescription } = req.body;
+  const newComplaint = new Complaint({
+    locality,
+    date,
+    issueType,
+    issueDescription,
+  });
+  console.log("Request body: ", req.body);
+  const complaintData = await newComplaint.save();
+  console.log("Complaint Data: ", complaintData);
+  return res.status(200).json({
+    success: true,
+    msg: "Complaint Registered successfully!",
+    complaintData,
+  });
+});
+
+const getComplaints = asyncHandler(async (req, res) => {
+  try {
+    const complaintsList = await Complaint.find();
+    console.log(
+      "Here are the list of complaints registered by the residents: ",
+      complaintsList
+    );
+    return res.status(200).json({
+      success: true,
+      msg: "List of complaints registered by the residents",
+      complaintsList,
+    });
+  } catch (error) {
+    console.error("Error fetching complaints: ", error);
+    return res.status(500).json({
+      success: false,
+      msg: "Error fetching complaints",
+      error: error.message,
+    });
+  }
+});
+
 export {
   changeCurrentPassword,
   getCurrentUser,
@@ -230,4 +272,6 @@ export {
   logoutUser,
   refreshAccessToken,
   registerUser,
+  registerComplaint,
+  getComplaints,
 };
