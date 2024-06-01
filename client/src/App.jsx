@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import Home from "./pages/Home.jsx"
 import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
-
+import ListOfComplaints from './pages/ListOfComplaints.jsx'
 const App = () => {
   return (
     <main className="bg-slate-300/20">
