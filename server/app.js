@@ -16,11 +16,11 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// routes import - (std. practise is importing routes here after middleware declaration)
+// routes import 
 import userRouter from "./routes/user.routes.js";
 
 // routes declaration
-app.use("/api/v1/users", userRouter);
+app.use("/api/users", userRouter);
 
 // eg. http://localhost:8000/api/v1/users/register
 
