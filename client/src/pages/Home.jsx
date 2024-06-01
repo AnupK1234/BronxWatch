@@ -31,7 +31,7 @@ const Home = () => {
                     <img src={bronxImage} className="mx-auto h-96 w-96 border-8 border-gray-300 rounded-full mb-8 shadow-xl" alt="Bronx" />
                 </div>
                 <footer className="mt-12 text-black-500">
-                    <p className="text-3xl">Together, we create a safer Bronx.</p>
+                    <p className="text-3xl">Together, we create a better Bronx.</p>
                     © {new Date().getFullYear()} BronxWatch. All rights reserved.
                 </footer>
             </div>
