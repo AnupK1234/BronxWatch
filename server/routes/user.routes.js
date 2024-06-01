@@ -8,6 +8,7 @@ import {
   registerUser,
   registerComplaint,
   getComplaints,
+  uploadImage,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
@@ -29,5 +30,7 @@ router.route("/current-user").get(verifyJWT, getCurrentUser);
 router.route("/register-complaint").post(registerComplaint);
 
 router.route("/get-complaint").get(getComplaints);
+
+router.route("/upload").post(uploadImage);
 
 export default router;

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
 
 const Register_Complaints = () => {
     const [locality, setLocality] = useState("");
@@ -8,6 +8,7 @@ const Register_Complaints = () => {
     const [longitude, setLongitude] = useState("");
     const [issueDescription, setIssueDescription] = useState("");
     const [date, setDate] = useState("");
+    const [file, setFile] = useState(null);
 
     const triggerAPI = useCallback(async () => {
         try {
@@ -18,14 +19,30 @@ const Register_Complaints = () => {
                 longitude,
                 issueDescription,
                 date,
-                mapAPI: `https://www.google.com/maps?q=${latitude},${longitude}`
+                mapAPI: `https://www.google.com/maps?q=${latitude},${longitude}`,
+                file
             });
             console.log("Response: ", res);
         } catch (err) {
             console.log("Error: ", err);
         }
-    }, [locality, issueType, latitude, longitude, issueDescription, date]);
-
+    }, [locality, issueType, latitude, longitude, issueDescription, date,file]);
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file);
+      
+        try {
+          const res = await axios.post("http://localhost:8000/api/users/upload", formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+          console.log("Response: ", res);
+        } catch (err) {
+          console.log("Error: ", err);
+        }
+      }
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         triggerAPI();
@@ -75,6 +92,13 @@ const Register_Complaints = () => {
                             Date
                         </label>
                         <input value={date} onChange={(e) => setDate(e.target.value)} type="date" name="date" id="date"
+                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div>
+                    <div className="mb-5  m-5">
+                        <label htmlFor="file" className="mb-3 block text-base font-medium text-[#07074D]">
+                            Upload Image
+                        </label>
+                        <input type="file" name="file" id="file" onChange={handleUpload}
                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div>

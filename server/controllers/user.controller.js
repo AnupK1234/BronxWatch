@@ -4,6 +4,7 @@ import { Complaint } from "../models/complaint.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import multer from "multer";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -265,6 +266,34 @@ const getComplaints = asyncHandler(async (req, res) => {
   }
 });
 
+const uploadImage = asyncHandler(async (req, res) => {
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      return cb(null, "./public/Images");
+    },
+    filename: function (req, file, cb) {
+      return cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  });
+  const upload = multer({ storage });
+  upload.single("file")(req, res, (err) => {
+    if (err) {
+      console.error("Error uploading image: ", err);
+      return res.status(500).json({
+        success: false,
+        msg: "Error uploading image",
+        error: err.message,
+      });
+    }
+    console.log("Image uploaded successfully: ", req.file);
+    return res.status(200).json({
+      success: true,
+      msg: "Image uploaded successfully",
+      imageUrl: req.file.path,
+    });
+  });
+});
+
 export {
   changeCurrentPassword,
   getCurrentUser,
@@ -274,4 +303,5 @@ export {
   registerUser,
   registerComplaint,
   getComplaints,
+  uploadImage,
 };
