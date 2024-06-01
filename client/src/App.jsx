@@ -1,15 +1,15 @@
 import "./App.css";
 
-import Navbar from "./components/Navbar";
-
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Register_Complaints from "./pages/Register_Complaints";
-import Community_Forum from "./pages/Community_Forum";
+import Navbar from "./components/Navbar";
 import About from "./pages/About";
+import Community_Forum from "./pages/Community_Forum";
 import Contact from "./pages/Contact";
-import Home from "./pages/Home.jsx"
-import SignUp from "./pages/SignUp.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Home from "./pages/Home.jsx";
+import Register_Complaints from "./pages/Register_Complaints";
 import SignIn from "./pages/SignIn.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 const App = () => {
   return (
@@ -27,6 +27,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/user/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </main>

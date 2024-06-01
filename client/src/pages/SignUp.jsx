@@ -1,7 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -9,8 +11,18 @@ const SignUp = () => {
     password: "",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const response = await axios.post("http://localhost:8000/api/users/register", {
+      fullname: formData.fullname,
+      email: formData.email,
+      username: formData.username,
+      password: formData.password,
+    });
+    // console.log(response.data);
+    // if(response.data.statusCode == 200) navigate("/signin");
+
   };
 
   const handleChange = (event) => {
