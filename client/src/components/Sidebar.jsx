@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
@@ -14,11 +15,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               Dashboard
             </a>
           </li>
+          <Link to="/list_of_complaints">
           <li className="mt-3">
-            <a href="#" className="block px-4 py-2 rounded hover:bg-blue-800">
+            <a className="block px-4 py-2 rounded hover:bg-blue-800">
               Complaints
             </a>
           </li>
+          </Link>
           <li className="mt-3">
             <a href="#" className="block px-4 py-2 rounded hover:bg-blue-800">
               Reports

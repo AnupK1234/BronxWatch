@@ -9,7 +9,7 @@ const data = {
   datasets: [
     {
       label: "# of Complaints",
-      data: [5, 3, 2],
+      data: [4, 3, 1],
       backgroundColor: [
         "rgba(54, 162, 235, 0.2)",
         "rgba(255, 206, 86, 0.2)",

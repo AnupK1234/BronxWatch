@@ -1,15 +1,28 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const SignIn = () => {
+  const {isLoggedIn, setLogIn} = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    //alert(`${formData.email} ${formData.password}`)
+    const res = await axios.post("http://localhost:8000/api/users/login", {
+      email: formData.email,
+      password: formData.password
+    })
+    console.log(res);
+    if(res.status == 200){
+      navigate("/user/dashboard")
+      setLogIn(true);
+    } 
   };
 
   const handleChange = (event) => {

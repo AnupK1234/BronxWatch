@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import "./App.css";
 
@@ -18,10 +18,15 @@ import GeneralPage from './pages/GeneralPage';
 import TipPage from './pages/TipPage';
 import EventPage from './pages/EventPage';
 import EmergencyPage from './pages/EmergencyPage';
+import { AuthContext } from './context/AuthContext.jsx';
 
 
 const App = () => {
+
+  const [isLoggedIn, setLogIn] = useState(false);
+
   return (
+    <AuthContext.Provider value={{isLoggedIn, setLogIn}}>
     <main className="bg-slate-300/20">
       <Router>
         <Navbar />
@@ -47,6 +52,7 @@ const App = () => {
         </Routes>
       </Router>
     </main>
+    </AuthContext.Provider>
   );
 };
 export default App;

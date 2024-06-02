@@ -8,7 +8,7 @@ const ListOfComplaints = () => {
         axios.get("http://localhost:8000/api/users/get-complaint")
             .then((res) => {
                 setDetails(res.data.complaintsList);
-                console.log(res.data.complaintsList);
+                //console.log(res.data.complaintsList);
             })
             .catch((err) => console.log(err));
     }, []);
