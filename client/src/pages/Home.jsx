@@ -27,7 +27,7 @@ const Home = () => {
             <div className="w-1/2 flex flex-col items-center justify-center">
                 <div className="px-6 py-10 mx-auto text-center">
                     <h1 className="text-5xl font-bold text-gray-800 mb-6">Welcome to BronxWatch</h1>
-                    <p className="text-xl text-gray-600 mb-8">Protecting The Bronx, One Alert at a Time.</p>
+                    <p className="text-xl text-gray-600 mb-8">Protecting The Community, One Alert at a Time.</p>
                     <img src={bronxImage} className="mx-auto h-96 w-96 border-8 border-gray-300 rounded-full mb-8 shadow-xl" alt="Bronx" />
                 </div>
                 <footer className="mt-12 text-black-500">
