@@ -23,6 +23,10 @@ const Community_Forum = () => {
                         <h2 className="font-semibold text-xl text-gray-800">Event Announcements</h2>
                         <p className="text-gray-600">Get information about upcoming workshops and community gatherings.</p>
                     </div>
+                    <div className="bg-white p-6 rounded-lg shadow">
+                        <h2 className="font-semibold text-xl text-gray-800">Emergency Resources</h2>
+                        <p className="text-gray-600">Using Maps to find resources at a single tap.</p>
+                    </div>
                 </div>
             </div>
         </div>
