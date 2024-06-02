@@ -2,7 +2,7 @@ import React from 'react';
 
 const Community_Forum = () => {
     return (
-        <div className="bg-gray-100 min-h-screen p-8">
+        <div className="bg-gray-100 min-h-screen p-12 mt-14">
             <div className="container mx-auto">
                 <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Community Forum</h1>
                 <p className="text-lg text-center text-gray-600 mb-8">
