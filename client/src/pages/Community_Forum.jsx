@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Community_Forum = () => {
+
     return (
         <div className="bg-gray-100 min-h-screen p-12 mt-14">
             <div className="container mx-auto">
@@ -14,18 +17,22 @@ const Community_Forum = () => {
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">General Discussion</h2>
                         <p className="text-gray-600">Discuss any topic related to community safety and awareness.</p>
+                        <Link to="/community_forum/general" className="text-blue-500 hover:text-blue-700">Visit</Link>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">Tips and Resources</h2>
                         <p className="text-gray-600">Share and find tips on how to make Bronx better.</p>
+                        <Link to="/community_forum/tip" className="text-blue-500 hover:text-blue-700">Visit</Link>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">Event Announcements</h2>
                         <p className="text-gray-600">Get information about upcoming workshops and community gatherings.</p>
+                        <Link to="/community_forum/event" className="text-blue-500 hover:text-blue-700">Visit</Link>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">Emergency Resources</h2>
-                        <p className="text-gray-600">Using Maps to find resources at a single tap.</p>
+                        <p className="text-gray-600">Using Maps to find resources at a single tap.</p> 
+                        <Link to="/community_forum/emergency" className="text-blue-500 hover:text-blue-700">Visit</Link>
                     </div>
                 </div>
             </div>
