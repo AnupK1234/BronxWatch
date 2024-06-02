@@ -4,7 +4,7 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import multer from "multer";
+import { Vonage } from "@vonage/server-sdk";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -227,7 +227,25 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 // register complaint
 const registerComplaint = asyncHandler(async (req, res) => {
-  const { locality, date, issueType, issueDescription, mapAPI } = req.body;
+  const { locality, date, issueType, issueDescription, mapAPI, mobileNo } =
+    req.body;
+  const vonage = new Vonage({
+    apiKey: process.env.VONAGE_API_KEY,
+    apiSecret: process.env.VONAGE_SECRET_KEY,
+  });
+  const from = "Bronx Watch Community";
+  const to = `${mobileNo}`;
+  const text = "Your complaint is registered successfully!!";
+  await vonage.sms
+    .send({ to, from, text })
+    .then((resp) => {
+      console.log("Message sent successfully");
+      console.log(resp);
+    })
+    .catch((err) => {
+      console.log("There was an error sending the messages.");
+      console.error(err);
+    });
   const newComplaint = new Complaint({
     locality,
     date,
@@ -265,34 +283,6 @@ const getComplaints = asyncHandler(async (req, res) => {
       error: error.message,
     });
   }
-});
-
-const uploadImage = asyncHandler(async (req, res) => {
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      return cb(null, "./public/Images");
-    },
-    filename: function (req, file, cb) {
-      return cb(null, `${Date.now()}_${file.originalname}`);
-    },
-  });
-  const upload = multer({ storage });
-  upload.single("file")(req, res, (err) => {
-    if (err) {
-      console.error("Error uploading image: ", err);
-      return res.status(500).json({
-        success: false,
-        msg: "Error uploading image",
-        error: err.message,
-      });
-    }
-    console.log("Image uploaded successfully: ", req.file);
-    return res.status(200).json({
-      success: true,
-      msg: "Image uploaded successfully",
-      imageUrl: req.file.path,
-    });
-  });
 });
 
 export {
