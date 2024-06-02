@@ -1,3 +1,5 @@
+import React from 'react';
+
 import "./App.css";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -10,8 +12,14 @@ import Home from "./pages/Home.jsx";
 import Register_Complaints from "./pages/Register_Complaints";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import SignIn from "./pages/SignIn.jsx";
 import ListOfComplaints from './pages/ListOfComplaints.jsx'
+
+import GeneralPage from './pages/GeneralPage';
+import TipPage from './pages/TipPage';
+import EventPage from './pages/EventPage';
+import EmergencyPage from './pages/EmergencyPage';
+
+
 const App = () => {
   return (
     <main className="bg-slate-300/20">
@@ -30,6 +38,12 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/user/dashboard" element={<Dashboard />} />
           <Route path = "/list_of_complaints" element = {<ListOfComplaints />} />
+
+          <Route path="/community_forum/general" element={<GeneralPage />} />
+          <Route path="/community_forum/tip" element={<TipPage />} />
+          <Route path="/community_forum/event" element={<EventPage />} />
+          <Route path="/community_forum/emergency" element={<EmergencyPage />} />
+          
         </Routes>
       </Router>
     </main>

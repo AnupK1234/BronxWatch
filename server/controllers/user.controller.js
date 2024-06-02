@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import { User } from "../models/user.model.js";
 import { Complaint } from "../models/complaint.model.js";
+import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -227,12 +227,13 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 // register complaint
 const registerComplaint = asyncHandler(async (req, res) => {
-  const { locality, date, issueType, issueDescription } = req.body;
+  const { locality, date, issueType, issueDescription, mapAPI } = req.body;
   const newComplaint = new Complaint({
     locality,
     date,
     issueType,
     issueDescription,
+    mapAPI,
   });
   console.log("Request body: ", req.body);
   const complaintData = await newComplaint.save();
@@ -296,12 +297,11 @@ const uploadImage = asyncHandler(async (req, res) => {
 
 export {
   changeCurrentPassword,
+  getComplaints,
   getCurrentUser,
   loginUser,
   logoutUser,
   refreshAccessToken,
-  registerUser,
   registerComplaint,
-  getComplaints,
-  uploadImage,
+  registerUser,
 };
