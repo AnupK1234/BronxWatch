@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { Vonage } from "@vonage/server-sdk";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -227,13 +228,31 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 // register complaint
 const registerComplaint = asyncHandler(async (req, res) => {
-  const { locality, date, issueType, issueDescription, mapAPI } = req.body;
+  const { locality, date, issueType, issueDescription, mapAPI, mobileNo } =
+    req.body;
+  const vonage = new Vonage({
+    apiKey: process.env.VONAGE_API_KEY,
+    apiSecret: process.env.VONAGE_SECRET_KEY,
+  });
+  const from = "Bronx Watch Community";
+  const to = `${mobileNo}`;
+  const text = "Your complaint is registered successfully!!";
+  await vonage.sms
+    .send({ to, from, text })
+    .then((resp) => {
+      console.log("Message sent successfully");
+      console.log(resp);
+    })
+    .catch((err) => {
+      console.log("There was an error sending the messages.");
+      console.error(err);
+    });
   const newComplaint = new Complaint({
     locality,
     date,
     issueType,
     issueDescription,
-    mapAPI
+    mapAPI,
   });
   console.log("Request body: ", req.body);
   const complaintData = await newComplaint.save();
@@ -268,9 +287,12 @@ const getComplaints = asyncHandler(async (req, res) => {
 });
 
 export {
-  changeCurrentPassword, getComplaints, getCurrentUser,
+  changeCurrentPassword,
+  getComplaints,
+  getCurrentUser,
   loginUser,
   logoutUser,
-  refreshAccessToken, registerComplaint, registerUser
+  refreshAccessToken,
+  registerComplaint,
+  registerUser,
 };
-

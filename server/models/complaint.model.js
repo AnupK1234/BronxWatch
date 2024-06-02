@@ -29,6 +29,10 @@ const complaintSchema = new Schema({
     type: String,
     require: true,
   },
+  mobileNo: {
+    type: Number,
+    require: true,
+  },
 });
 
 export const Complaint = mongoose.model("Complaint", complaintSchema);
