@@ -21,21 +21,17 @@ const Navbar = () => {
                 'text-blue-500' : 'text-black'}>
                     About
                 </NavLink>
-                <NavLink to = "/signup" className = {({ isActive }) => isActive ? 
+                <NavLink to = "/contact" className = {({ isActive }) => isActive ? 
                 'text-blue-500' : 'text-black'}>
-                    Sign Up
+                    Contact
+                </NavLink>
+                <NavLink to = "/user/dashboard" className = {({ isActive }) => isActive ? 
+                'text-blue-500' : 'text-black'}>
+                    Dashboard
                 </NavLink>
                 <NavLink to = "/signin" className = {({ isActive }) => isActive ? 
                 'text-blue-500' : 'text-black'}>
                     Log In
-                </NavLink>
-                <NavLink to = "/dashboard" className = {({ isActive }) => isActive ? 
-                'text-blue-500' : 'text-black'}>
-                    Dashboard
-                </NavLink>
-                <NavLink to = "/contact" className = {({ isActive }) => isActive ? 
-                'text-blue-500' : 'text-black'}>
-                    Contact
                 </NavLink>
             </nav>
         </header>

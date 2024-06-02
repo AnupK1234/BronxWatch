@@ -10,7 +10,6 @@ import Home from "./pages/Home.jsx";
 import Register_Complaints from "./pages/Register_Complaints";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import SignIn from "./pages/SignIn.jsx";
 import ListOfComplaints from './pages/ListOfComplaints.jsx'
 const App = () => {
   return (
