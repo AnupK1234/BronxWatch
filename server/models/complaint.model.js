@@ -25,6 +25,10 @@ const complaintSchema = new Schema({
     type: Number,
     require: true,
   },
+  mapAPI: {
+    type: String,
+    require: true,
+  },
 });
 
 export const Complaint = mongoose.model("Complaint", complaintSchema);

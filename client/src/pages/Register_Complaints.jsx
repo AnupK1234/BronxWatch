@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from 'axios'
 
 const Register_Complaints = () => {
@@ -8,6 +8,27 @@ const Register_Complaints = () => {
     const [longitude, setLongitude] = useState("");
     const [issueDescription, setIssueDescription] = useState("");
     const [date, setDate] = useState("");
+
+    const fetchGeolocation = useCallback(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setLatitude(position.coords.latitude);
+                    setLongitude(position.coords.longitude);
+                },
+                // (error) => {
+                //     console.error("Error fetching geolocation: ", error);
+                // }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchGeolocation();
+    }, [fetchGeolocation]);
+
 
     const triggerAPI = useCallback(async () => {
         try {
