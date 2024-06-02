@@ -17,11 +17,11 @@ const Community_Forum = () => {
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">Tips and Resources</h2>
-                        <p className="text-gray-600">Share and find tips on how to stay safe in the Bronx.</p>
+                        <p className="text-gray-600">Share and find tips on how to make Bronx better.</p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h2 className="font-semibold text-xl text-gray-800">Event Announcements</h2>
-                        <p className="text-gray-600">Get information about upcoming safety workshops and community gatherings.</p>
+                        <p className="text-gray-600">Get information about upcoming workshops and community gatherings.</p>
                     </div>
                 </div>
             </div>
